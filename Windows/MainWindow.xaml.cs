@@ -156,6 +156,7 @@ namespace OsuModeManager.Windows {
         public void ToggleUpdateCheckButton() => UpdateCheckButton.IsEnabled = GamemodeList.Items.Count > 0;
 
         async void UpdateCheckButton_Click(object Sender, RoutedEventArgs E) {
+            UpdateCheckButton.IsEnabled = false;
             Debug.WriteLine("Checking for updates...");
             Dictionary<Gamemode, Release> Updates = new Dictionary<Gamemode, Release>();
             for (int C = Gamemodes.Count - 1; C >= 0; C--) {
@@ -186,6 +187,7 @@ namespace OsuModeManager.Windows {
                 }
 
                 UpdateGamemodeStatus(G, UpdateStatus, true);
+                UpdateCheckButton.IsEnabled = true;
             }
 
             UpdateWindow UpdateWindow = new UpdateWindow(this, Updates);
