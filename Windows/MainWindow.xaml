@@ -65,9 +65,13 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Padding="0" Margin="2" Click="GamemodeFolderOpen_Click">
+            <Button x:Name="OpenExternalButton" Grid.Row="0" Grid.Column="0" Padding="0" Margin="2" Click="GamemodeFolderOpen_Click" ToolTip="Open osu!lazer directory in file manager">
                 <Button.Content>
-                    <iconPacks:PackIconMaterial Kind="FolderOpen" />
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="FolderOpen" />
+                        <Label Content="Open" Padding="4,0,4,0" VerticalAlignment="Center"
+VerticalContentAlignment="Center" />
+                    </StackPanel>
                 </Button.Content>
             </Button>
             <Button Grid.Row="0" Grid.Column="1" Padding="0" Margin="2" x:Name="GamemodeListImport"
@@ -81,19 +85,27 @@
                 </Button.Content>
             </Button>
             <Button Grid.Row="0" Grid.Column="2" Padding="0" Margin="2" x:Name="GamemodeListAdd"
-                    Click="GamemodeListAdd_Click">
+                    Click="GamemodeListAdd_Click" ToolTip="Add a new gamemode from GitHub">
                 <Button.Content>
-                    <iconPacks:PackIconMaterial Kind="PlaylistPlus" />
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="PlaylistPlus" />
+                        <Label Content="Add" Padding="4,0,4,0" VerticalAlignment="Center"
+       VerticalContentAlignment="Center" />
+                    </StackPanel>
                 </Button.Content>
             </Button>
             <Button Grid.Row="0" Grid.Column="3" Padding="0" Margin="2" x:Name="GamemodeListRemove"
-                    Click="GamemodeListRemove_Click">
+                    Click="GamemodeListRemove_Click" ToolTip="Remove the selected gamemode">
                 <Button.Content>
-                    <iconPacks:PackIconMaterial Kind="PlaylistRemove" />
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="PlaylistRemove" />
+                        <Label Content="Remove" Padding="4,0,4,0" VerticalAlignment="Center"
+VerticalContentAlignment="Center" />
+                    </StackPanel>
                 </Button.Content>
             </Button>
             <Button Grid.Row="0" Grid.Column="4" Padding="0" Margin="2" x:Name="GamemodeListSave"
-                    Click="GamemodeListSave_Click">
+                    Click="GamemodeListSave_Click" ToolTip="Save gamemode settings">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="ContentSave" />
@@ -103,7 +115,7 @@
                 </Button.Content>
             </Button>
             <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" x:Name="UpdateCheckButton"
-                    Content="Check for updates" Click="UpdateCheckButton_Click" />
+                    Content="Check for updates" Click="UpdateCheckButton_Click" ToolTip="Check gamemodes for updates" />
         </Grid>
         <Button Grid.Row="0" Grid.RowSpan="3" x:Name="AuthoriseButton" Click="AuthoriseButton_Click"
                 Visibility="Collapsed">
