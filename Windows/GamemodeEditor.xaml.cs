@@ -81,7 +81,10 @@ namespace OsuModeManager.Windows {
             string Version = TextBoxTagVersion.Text;
             string RulesetFile = TextBoxRulsesetFilename.Text;
 
-            if (User.IsNullOrEmpty() || Repo.IsNullOrEmpty() || Version.IsNullOrEmpty() || RulesetFile.IsNullOrEmpty()) { return; }
+            if (User.IsNullOrEmpty() || Repo.IsNullOrEmpty() || Version.IsNullOrEmpty() || RulesetFile.IsNullOrEmpty()) {
+                MessageBox.Show("Invalid settings. Please make sure all fields are correctly filled.", Title + "・Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             ResultantGamemode = new Gamemode(User, Repo, Version, RulesetFile, ResultantGamemode.UpdateStatus);
 
@@ -127,7 +130,11 @@ namespace OsuModeManager.Windows {
             }
         }
 
-        async void GetLatestButton_Click(object Sender, RoutedEventArgs E) => await GetLatest();
+        async void GetLatestButton_Click(object Sender, RoutedEventArgs E) {
+            GetLatestButton.IsEnabled = false;
+            await GetLatest();
+            GetLatestButton.IsEnabled = true;
+        }
 
         async Task GetLatest() {
             string User = TextBoxGitHubUser.Text;
