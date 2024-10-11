@@ -45,7 +45,7 @@ namespace OsuModeManager.Windows {
             //Create new OAuth token if none exists, or if the latest is older than 8 hours
             if (Environment.GetCommandLineArgs().Contains("--flush") || Settings.Default.LatestToken.IsNullOrEmpty() || DateTime.UtcNow - Settings.Default.LatestTokenCreationTime >= TimeSpan.FromHours(8)) {
                 Debug.WriteLine("New OAuth Token Required");
-                AuthoriseButton.Visibility = Visibility.Visible;
+                AuthoriseButton.IsEnabled = true;
             } else {
                 Debug.WriteLine("Reusing OAuth Token");
                 Client.Credentials = new Credentials(Settings.Default.LatestToken);
@@ -233,7 +233,8 @@ namespace OsuModeManager.Windows {
                 Settings.Default.Save();
 
                 await Dispatcher.Invoke(async () => { //Called on OAuth Success
-                    AuthoriseButton.Visibility = Visibility.Collapsed;
+                    AuthoriseButton.IsEnabled = false;
+                    AuthoriseButton.Content = "Already logged in!";
                     await SelfUpdateWindow.CreateUpdateChecker(this);
                 }, DispatcherPriority.Normal);
                 return;
