@@ -42,7 +42,12 @@ namespace OsuModeManager.Windows {
             InitializeComponent(); //Setup dependencies before initialisation
             Client = new GitHubClient(new ProductHeaderValue("Osu!ModeManager", GetCurrentApplicationVersionName()));
 
-            //Create new OAuth token if none exists, or if the latest is older than 8 hours
+            /*
+             * Need to fetch the token when:
+             * - Specified in command line arguments
+             * - A valid token doesn't exist
+             * - The latest token is older than 8 hours 
+             */
             if (Environment.GetCommandLineArgs().Contains("--flush") || Settings.Default.LatestToken.IsNullOrEmpty() || DateTime.UtcNow - Settings.Default.LatestTokenCreationTime >= TimeSpan.FromHours(8)) {
                 Debug.WriteLine("New OAuth Token Required");
                 AuthoriseButton.IsEnabled = true;
@@ -50,8 +55,9 @@ namespace OsuModeManager.Windows {
                 Debug.WriteLine("Reusing OAuth Token");
                 Client.Credentials = new Credentials(Settings.Default.LatestToken);
                 Dispatcher.Invoke(async () => await SelfUpdateWindow.CreateUpdateChecker(this), DispatcherPriority.Normal);
+                AuthoriseButton.Content = "Already logged in!";
+                AuthoriseButton.IsEnabled = false;
             }
-            //AuthoriseButton.Visibility = System.Windows.Visibility.Visible;
 
             LazerVersionCombo.SelectedIndex = 0;
 
@@ -89,7 +95,13 @@ namespace OsuModeManager.Windows {
         public DirectoryInfo GetCurrentLazerPath() => (DirectoryInfo)LazerVersionCombo.SelectedItem;
 
         public static List<DirectoryInfo> GetLazerVersions() {
-            List<DirectoryInfo> AppVersions = LazerInstallationPath?.GetDirectories("app-*").ToList() ?? new List<DirectoryInfo>();
+            // Detect Velopack base versions (newer, higher priority)
+            List<DirectoryInfo> AppVersions = LazerInstallationPath?.GetDirectories("current").ToList();
+            
+            // Detect Squirrel based versions
+            if (AppVersions == null)
+                AppVersions = LazerInstallationPath?.GetDirectories("app-*").ToList() ?? new List<DirectoryInfo>();
+
             AppVersions.Reverse();
             return AppVersions;
         }
