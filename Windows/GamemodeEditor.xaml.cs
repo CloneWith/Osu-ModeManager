@@ -10,6 +10,7 @@
 
 #region Using Directives
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -159,15 +160,23 @@ namespace OsuModeManager.Windows
         {
             var User = TextBoxGitHubUser.Text;
             var Repo = TextBoxGitHubRepo.Text;
-            if ((await MainWindow.Client.Repository.Release.GetAll(User, Repo)).TryGetFirst(out var Release))
+            try
             {
-                Dispatcher.Invoke(() => TextBoxTagVersion.Text = Release.TagName, DispatcherPriority.Normal);
-                foreach (var Asset in Release.Assets.Where(Asset => Asset.Name.ToLowerInvariant().EndsWith(".dll")))
+                if ((await MainWindow.Client.Repository.Release.GetAll(User, Repo)).TryGetFirst(out var Release))
                 {
-                    Dispatcher.Invoke(() => TextBoxRulsesetFilename.Text = Asset.Name, DispatcherPriority.Normal);
-                    ResultantGamemode.UpdateStatus = UpdateStatus.UpToDate;
-                    break;
+                    Dispatcher.Invoke(() => TextBoxTagVersion.Text = Release.TagName, DispatcherPriority.Normal);
+                    foreach (var Asset in Release.Assets.Where(Asset => Asset.Name.ToLowerInvariant().EndsWith(".dll")))
+                    {
+                        Dispatcher.Invoke(() => TextBoxRulsesetFilename.Text = Asset.Name, DispatcherPriority.Normal);
+                        ResultantGamemode.UpdateStatus = UpdateStatus.UpToDate;
+                        break;
+                    }
                 }
+            }
+            catch (NotFoundException e)
+            {
+                Debug.WriteLine(e);
+                // This repo is not found.                
             }
         }
 

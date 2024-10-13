@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>OsuModeManager</RootNamespace>
     <PublishUrl>publish\</PublishUrl>
@@ -49,7 +49,6 @@
     <PackageReference Include="CefSharp.Wpf" />
     <PackageReference Include="MahApps.Metro" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" />
-    <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Octokit" />
     <PackageReference Include="Ookii.Dialogs.Wpf" />
   </ItemGroup>

@@ -5,10 +5,9 @@
     <NoWarn>$(NoWarn);NU1507</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="CefSharp.Wpf" Version="129.0.110" />
-    <PackageVersion Include="MahApps.Metro" Version="3.0.0-alpha0492" />
-    <PackageVersion Include="MahApps.Metro.IconPacks.Material" Version="5.0.0" />
-    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="CefSharp.Wpf" Version="94.4.110" />
+    <PackageVersion Include="MahApps.Metro" Version="2.4.10" />
+    <PackageVersion Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageVersion Include="Octokit" Version="13.0.1" />
     <PackageVersion Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
   </ItemGroup>
