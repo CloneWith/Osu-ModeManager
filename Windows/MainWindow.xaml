@@ -65,12 +65,13 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button x:Name="OpenExternalButton" Grid.Row="0" Grid.Column="0" Padding="0" Margin="2" Click="GamemodeFolderOpen_Click" ToolTip="Open osu!lazer directory in file manager">
+            <Button x:Name="OpenExternalButton" Grid.Row="0" Grid.Column="0" Padding="0" Margin="2"
+                    Click="GamemodeFolderOpen_Click" ToolTip="Open osu!lazer directory in file manager">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="FolderOpen" />
                         <Label Content="Open" Padding="4,0,4,0" VerticalAlignment="Center"
-VerticalContentAlignment="Center" />
+                               VerticalContentAlignment="Center" />
                     </StackPanel>
                 </Button.Content>
             </Button>
@@ -90,7 +91,7 @@ VerticalContentAlignment="Center" />
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="PlaylistPlus" />
                         <Label Content="Add" Padding="4,0,4,0" VerticalAlignment="Center"
-       VerticalContentAlignment="Center" />
+                               VerticalContentAlignment="Center" />
                     </StackPanel>
                 </Button.Content>
             </Button>
@@ -100,7 +101,7 @@ VerticalContentAlignment="Center" />
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="PlaylistRemove" />
                         <Label Content="Remove" Padding="4,0,4,0" VerticalAlignment="Center"
-VerticalContentAlignment="Center" />
+                               VerticalContentAlignment="Center" />
                     </StackPanel>
                 </Button.Content>
             </Button>
@@ -114,8 +115,9 @@ VerticalContentAlignment="Center" />
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="AuthoriseButton" 
-                    Content="Sign in with GitHub" Click="AuthoriseButton_Click" ToolTip="Use GitHub for update checking and online rulesets" />
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="AuthoriseButton"
+                    Content="Sign in with GitHub" Click="AuthoriseButton_Click"
+                    ToolTip="Use GitHub for update checking and online rulesets" />
             <Button Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" x:Name="UpdateCheckButton"
                     Content="Check for updates" Click="UpdateCheckButton_Click" ToolTip="Check gamemodes for updates" />
         </Grid>
